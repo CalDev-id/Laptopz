@@ -281,15 +281,15 @@
     </section>
 </div>
 
-<link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
-<link rel="stylesheet" href="vendors/simple-datatables/style.css">
-<script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+{{-- <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css"> --}}
+{{-- <link rel="stylesheet" href="vendors/simple-datatables/style.css"> --}}
+{{-- <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script> --}}
 {{-- end --}}
 
+{{-- <link rel="stylesheet" href="sass/pages/simple-datatables.scss"> --}}
 
 
 <link rel="stylesheet" href="vendors/simple-datatables/style.css">
-<link rel="stylesheet" href="sass/pages/simple-datatables.scss">
 <script src="vendors/simple-datatables/simple-datatables.js"></script>
 <script src="js/pages/simple-datatables.js"></script>
 </x-app-layout>

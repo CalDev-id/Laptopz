@@ -14,7 +14,7 @@
         </div>
     </x-slot>
 
-    <link rel="stylesheet" href="/assets/scss/iconly.scss">
+    {{-- <link rel="stylesheet" href="/resources/sass/iconly.scss"> --}}
     <div class="page-content"> 
         <section class="row">
             <div class="col-12 col-lg-9">

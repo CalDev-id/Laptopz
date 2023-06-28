@@ -36,5 +36,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
         Route::get('/badge', function () {
             return view('admin.component.badge');
         })->name('badge');
+        Route::get('/sweetalert', function () {
+            return view('admin.component.sweetalert');
+        })->name('sweetalert');
+        Route::get('/dropdown', function () {
+            return view('admin.component.dropdown');
+        })->name('dropdown');
+        Route::get('/rating', function () {
+            return view('admin.component.rating');
+        })->name('rating');
     });
 });

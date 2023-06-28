@@ -10,11 +10,15 @@
         <x-maz-sidebar-sub-item name="Badge" :link="route('components.badge')"></x-maz-sidebar-sub-item>
         <x-maz-sidebar-sub-item name="Button" :link="route('components.button')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
-    <x-maz-sidebar-item name="More Component" icon="bi bi-stack">
-        <x-maz-sidebar-sub-item name="Accordion" :link="route('components.accordion')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Alert" :link="route('components.alert')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Badge" :link="route('components.badge')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="Button" :link="route('components.button')"></x-maz-sidebar-sub-item>
+    <x-maz-sidebar-item name="MoreComponent" icon="bi bi-stack">
+        <x-maz-sidebar-sub-item name="sweetalert" :link="route('components.sweetalert')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="dropdown" :link="route('components.dropdown')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="rating" :link="route('components.rating')"></x-maz-sidebar-sub-item>
+    </x-maz-sidebar-item>
+    <x-maz-sidebar-item name="Form Elements" icon="hexagon-fill">
+        <x-maz-sidebar-sub-item name="sweetalert" :link="route('components.sweetalert')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="dropdown" :link="route('components.dropdown')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="rating" :link="route('components.rating')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
 
 </x-maz-sidebar>
