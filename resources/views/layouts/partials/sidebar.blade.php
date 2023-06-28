@@ -16,9 +16,12 @@
         <x-maz-sidebar-sub-item name="rating" :link="route('components.rating')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
     <x-maz-sidebar-item name="Form Elements" icon="hexagon-fill">
-        <x-maz-sidebar-sub-item name="sweetalert" :link="route('components.sweetalert')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="dropdown" :link="route('components.dropdown')"></x-maz-sidebar-sub-item>
-        <x-maz-sidebar-sub-item name="rating" :link="route('components.rating')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="formlayout" :link="route('components.formlayout')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="formvalidation" :link="route('components.formvalidation')"></x-maz-sidebar-sub-item>
+    </x-maz-sidebar-item>
+    <x-maz-sidebar-item name="Charts" icon="hexagon-fill">
+        <x-maz-sidebar-sub-item name="ChartJS" :link="route('components.chartjs')"></x-maz-sidebar-sub-item>
+        <x-maz-sidebar-sub-item name="apexcharts" :link="route('components.apexcharts')"></x-maz-sidebar-sub-item>
     </x-maz-sidebar-item>
 
 </x-maz-sidebar>

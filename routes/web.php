@@ -45,5 +45,17 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
         Route::get('/rating', function () {
             return view('admin.component.rating');
         })->name('rating');
+        Route::get('/formlayout', function () {
+            return view('admin.component.formlayout');
+        })->name('formlayout');
+        Route::get('/formvalidation', function () {
+            return view('admin.component.formvalidation');
+        })->name('formvalidation');
+        Route::get('/chartjs', function () {
+            return view('admin.component.chartjs');
+        })->name('chartjs');
+        Route::get('/apexcharts', function () {
+            return view('admin.component.apexcharts');
+        })->name('apexcharts');
     });
 });
