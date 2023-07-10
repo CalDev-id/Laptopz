@@ -35,6 +35,7 @@
 					</div>
 				</div>
 			</div>
+            @yield('inner-content')
 		</div>
 		@include('components.footer')
 	</div>
@@ -54,4 +55,5 @@
 	<script src="/plugins/moment/moment.min.js"></script>
 	<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 	<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
