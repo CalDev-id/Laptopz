@@ -40,15 +40,15 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ route('penilaian.store') }}" method="POST">
-                            @if(count($penilaian) < 1)
-                                <button type="submit" class="btn btn-success mb-3">Generate</button>
+                            @if(count($countpenilaian) < 1)
+                                <button type="submit" class="btn btn-success mb-3"><i class="fas fa-plus mr-1"></i> Generate</button>
                             @endif
                             @csrf
                             <table id="penilaian" class="table table-striped table-hover table-responsive">
                                 <thead>
                                     <tr class="bg-gradient bg-dark text-light">
                                         <th width="10%">Nama Alternatif</th>
-                                        @if(count($penilaian) < 1)
+                                        @if(count($countpenilaian) < 1 && count($countkriteria) < 1)
                                             <th class="text-center" width="20%">Kode Kriteria</th>  
                                         @endif
                                         @foreach($kriteria as $key => $value)
@@ -207,8 +207,10 @@
                                                         @endforeach
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                                                        <button class="btn btn-primary">Simpan</button>
+                                                        <button class="btn btn-primary float-left"><i class="fas fa-save mr-1"></i> Simpan</button>
+                                                        <div class="ml-auto">
+                                                            <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-arrow-left mr-1"></i> Kembali</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,7 +218,7 @@
                                         <!-- End Modal -->
                                     @empty
                                         <tr>
-                                            <td class="text-center">No data available in table</td>
+                                            <td class="text-center" colspan="2">No data available in table</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
