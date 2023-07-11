@@ -18,6 +18,8 @@ class PenilaianController extends Controller
         $data['title'] = 'Penilaian';
         $alternatif = Alternatif::with('penilaian.subkriteria')->get();
         $kriteria = Kriteria::with('subkriteria')->orderBy('id','ASC')->get();
+        $data['penilaian'] = Penilaian::with('subkriteria','alternatif')->get();
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('penilaian.index', compact('alternatif','kriteria'), $data);
     }
 
@@ -38,8 +40,7 @@ class PenilaianController extends Controller
 
             return back()->with('msg','Berhasil menyimpan penilaian');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menyimpan penilaian');
         }
     }
 }
