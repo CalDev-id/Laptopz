@@ -17,8 +17,8 @@
                         <table id="kriteria" class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr class="bg-gradient bg-dark text-light">
-                                    <th class="text-center" width="10%">Kode Kriteria</th>
-                                    <th class="text-center" width="20%">Nama Kriteria</th>
+                                    <th class="text-center" width="1%">Kode Kriteria</th>
+                                    <th class="text-center" width="1%">Nama Kriteria</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,9 +47,9 @@
                             <table id="penilaian" class="table table-striped table-hover table-responsive">
                                 <thead>
                                     <tr class="bg-gradient bg-dark text-light">
-                                        <th width="10%">Nama Alternatif</th>
+                                        <th width="1%">Nama Alternatif</th>
                                         @if(count($countpenilaian) < 1 && count($countkriteria) < 1)
-                                            <th class="text-center" width="20%">Kode Kriteria</th>  
+                                            <th class="text-center" width="1%">Kode Kriteria</th>  
                                         @endif
                                         @foreach($kriteria as $key => $value)
                                             <th class="text-center">{{ $value->kode }}</th>
@@ -232,14 +232,14 @@
     <script>
         $(function () {
             $("#kriteria").DataTable({
-                "paging": false, "responsive": true, "lengthChange": false, "autoWidth": false,
+                "paging": true, "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#kriteria_wrapper .col-md-6:eq(0)');
         });
 
         $(function () {
             $("#penilaian").DataTable({
-                "paging": false, "responsive": true, "lengthChange": false, "autoWidth": false,
+                "paging": true, "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#penilaian_wrapper .col-md-6:eq(0)');
         });
