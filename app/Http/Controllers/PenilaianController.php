@@ -18,7 +18,8 @@ class PenilaianController extends Controller
         $data['title'] = 'Penilaian';
         $alternatif = Alternatif::with('penilaian.subkriteria')->get();
         $kriteria = Kriteria::with('subkriteria')->orderBy('id','ASC')->get();
-        $data['penilaian'] = Penilaian::with('subkriteria','alternatif')->get();
+        $data['countpenilaian'] = Penilaian::with('subkriteria','alternatif')->get();
+        $data['countkriteria'] = Kriteria::with('subkriteria')->get();
         $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('penilaian.index', compact('alternatif','kriteria'), $data);
     }
