@@ -34,8 +34,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('kriteria.display', $subkriteria->kriteria_id) }}" class="btn btn-success float-right">Kembali</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Simpan</button>
+                            <a href="{{ route('kriteria.display', $subkriteria->kriteria_id) }}" class="btn btn-success float-right"><i class="fas fa-arrow-left mr-1"></i> Kembali</a>
                         </div>
                     </form>
                 </div>
