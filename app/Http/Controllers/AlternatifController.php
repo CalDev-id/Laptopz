@@ -19,6 +19,7 @@ class AlternatifController extends Controller
         session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['alternatif'] = Alternatif::orderBy('id','ASC')->get();
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('alternatif.index', $data);
     }
 
@@ -34,8 +35,7 @@ class AlternatifController extends Controller
             $alternatif->save();
             return back()->with('msg','Berhasil menambahkan data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menambahkan data');
         }
     }
 
@@ -45,6 +45,7 @@ class AlternatifController extends Controller
         $data['title'] = 'Alternatif';
         $data['listalternatif'] = Alternatif::orderBy('id','ASC')->get();
         $data['alternatif'] = Alternatif::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('alternatif.edit', $data);
     }
 
@@ -61,8 +62,7 @@ class AlternatifController extends Controller
             ]);
             return back()->with('msg','Berhasil merubah data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal merubah data');
         }
     }
 
