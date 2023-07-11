@@ -24,8 +24,7 @@ class SubkriteriaController extends Controller
             $subkriteria->save();
             return back()->with('msg','Berhasil menambahkan data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menambahkan data');
         }
     }
 
@@ -34,6 +33,7 @@ class SubkriteriaController extends Controller
         session(['dark-mode' => false]);
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('subkriteria.edit', $data);
     }
 
@@ -47,8 +47,7 @@ class SubkriteriaController extends Controller
             ]);
             return back()->with('msg','Berhasil merubah data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal merubah data');
         }
     }
 
