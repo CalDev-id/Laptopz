@@ -107,7 +107,15 @@
                     confirmButtonText: "OK"
                 });
             @endif
-
+            @if(Session::has('err'))
+                Swal.fire({
+                    title: "{{ Session::get('err') }}",
+                    icon: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK"
+                });
+            @endif
             // $('.hapus').on('click', function (event) {
             //     event.preventDefault();
 
@@ -146,7 +154,7 @@
             //                 }
             //             });
             //         } else {
-            //             Swal.fire("Data aman!", "", "info");
+            //             Swal.fire("Data aman", "", "info");
             //         }
             //     });
 
