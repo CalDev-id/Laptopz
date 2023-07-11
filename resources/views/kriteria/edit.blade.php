@@ -55,8 +55,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('kriteria.index') }}" class="btn btn-success float-right">Kembali</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Simpan</button>
+                            <a href="{{ route('kriteria.index') }}" class="btn btn-success float-right"><i class="fas fa-arrow-left mr-1"></i> Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -91,13 +91,13 @@
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('kriteria.display',$row->id) }}" class="btn btn-info rounded mr-2"><i class="fa fa-eye"></i></a>
-                                                        <a href="{{ route('kriteria.edit',$row->id) }}" class="btn btn-warning rounded mr-2"><i class="fa fa-edit"></i></a>
+                                                        <a href="{{ route('kriteria.display',$row->id) }}" class="btn btn-info rounded mr-2"><i class="fa fa-eye mr-1"></i> Read</a>
+                                                        <a href="{{ route('kriteria.edit',$row->id) }}" class="btn btn-warning rounded mr-2"><i class="fa fa-edit mr-1"></i> Edit</a>
                                                         <form action="{{ route('kriteria.destroy', $row->id) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger rounded hapus">
-                                                                <i class="fa fa-trash"></i>
+                                                                <i class="fa fa-trash mr-1"></i> Hapus
                                                             </button>
                                                         </form>
                                                     </div>
