@@ -42,8 +42,7 @@ class KriteriaController extends Controller
             $kriteria->save();
             return back()->with('msg','Berhasil menambahkan data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menambahkan data');
         }
     }
 
@@ -53,6 +52,7 @@ class KriteriaController extends Controller
         $data['title'] = 'Kriteria';
         $data['listkriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('kriteria.edit', $data);
     }
 
@@ -75,8 +75,7 @@ class KriteriaController extends Controller
             ]);
             return back()->with('msg','Berhasil merubah data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal merubah data');
         }
     }
 
@@ -97,6 +96,7 @@ class KriteriaController extends Controller
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::where('kriteria_id',$id)->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('kriteria.display', $data);
     }
 }
