@@ -2,7 +2,7 @@
 	class="main-sidebar elevation-4 {{ session('dark-mode', false) ? 'sidebar-light-primary' : 'sidebar-dark-primary' }}">
 	<a class="brand-link" href="{{ route('dashboard.index') }}">
 		<img alt="Laptopz Logo" class="brand-image img-circle elevation-3" src="/dist/img/LaptopzLogo.png" style="opacity: .8">
-		<span class="brand-text font-weight-light"><strong>Laptopz</strong></span>
+		<span class="brand-text font-weight-light">Laptopz</span>
 	</a>
 	<div class="sidebar">
 		<div class="user-panel d-flex mt-3 mb-3 pb-3">
