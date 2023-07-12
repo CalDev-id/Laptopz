@@ -1,5 +1,5 @@
 <aside
-	class="main-sidebar elevation-4 {{ session('dark-mode', false) ? 'sidebar-light-primary' : 'sidebar-dark-primary' }}">
+	class="main-sidebar elevation-4 {{ session('dark-mode') ? 'sidebar-dark-primary' : 'sidebar-light-primary' }}">
 	<a class="brand-link" href="{{ route('dashboard.index') }}">
 		<img alt="Laptopz Logo" class="brand-image img-circle elevation-3" src="/dist/img/LaptopzLogo.png" style="opacity: .8">
 		<span class="brand-text font-weight-light">Laptopz</span>

@@ -85,7 +85,6 @@ class KriteriaController extends Controller
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Kriteria';
         $data['kriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['lastPreset'] = session('last_preset');
@@ -95,7 +94,6 @@ class KriteriaController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Kriteria';
         $data['listkriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
@@ -128,7 +126,6 @@ class KriteriaController extends Controller
 
     public function display($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::where('kriteria_id',$id)->get();
         $data['kriteria'] = Kriteria::findOrFail($id);

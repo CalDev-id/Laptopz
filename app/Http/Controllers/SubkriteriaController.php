@@ -31,7 +31,6 @@ class SubkriteriaController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::findOrFail($id);
         $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';

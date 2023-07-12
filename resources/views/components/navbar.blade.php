@@ -6,8 +6,8 @@
 	</ul>
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item">
-			<a class="nav-link" href="#" role="button">
-				<i class="fas fa-{{ session('dark-mode') ? 'sun' : 'moon' }}"></i>
+			<a class="nav-link" href="/dark-mode" role="button">
+				<i class="fas fa-{{ session('dark-mode') ? 'moon' : 'sun' }}"></i>
 			</a>
 		</li>
 		<li class="nav-item">

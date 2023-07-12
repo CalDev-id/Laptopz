@@ -16,7 +16,6 @@ class PerhitunganController extends Controller
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Perhitungan';
         $alternatif = Alternatif::with('penilaian.subkriteria')->get();
         $kriteria = Kriteria::with('subkriteria')->orderBy('id','ASC')->get();
@@ -37,7 +36,7 @@ class PerhitunganController extends Controller
                     {
                         $minMax[$value->id][] = $value_1->subkriteria->bobot;
                     }
-                    elseif ($value->attribut == 'Cost') 
+                    elseif ($value->attribut == 'Cost')
                     {
                         $minMax[$value->id][] = $value_1->subkriteria->bobot;
                     }

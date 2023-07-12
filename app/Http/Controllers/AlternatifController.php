@@ -16,7 +16,6 @@ class AlternatifController extends Controller
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['alternatif'] = Alternatif::orderBy('id','ASC')->get();
         $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
@@ -41,7 +40,6 @@ class AlternatifController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['listalternatif'] = Alternatif::orderBy('id','ASC')->get();
         $data['alternatif'] = Alternatif::findOrFail($id);

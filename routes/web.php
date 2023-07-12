@@ -21,6 +21,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('dark-mode', [DashboardController::class, 'darkMode']);
 
 Route::resource('dashboard', DashboardController::class)->except(['show']);
 
@@ -36,11 +37,3 @@ Route::resource('penilaian', PenilaianController::class)->except(['show']);
 Route::get('penilaian/clear', [PenilaianController::class, 'clear'])->name('penilaian.clear');
 
 Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
-
-Route::get('/test', function () {
-    session(['dark-mode' => true]);
-    return view('layouts.dashboard', [
-        // 'title' => 'Test',
-        'bodyClass' => 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
-    ]);
-});
