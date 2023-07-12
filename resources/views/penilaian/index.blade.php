@@ -43,6 +43,9 @@
                             @if(count($countpenilaian) < 1)
                                 <button type="submit" class="btn btn-success mb-3"><i class="fas fa-plus mr-1"></i> Generate</button>
                             @endif
+                            @if(count($countpenilaian) > 0)
+                                <a href="{{ route('penilaian.clear') }}" class="btn btn-danger mb-3" onclick="event.preventDefault(); deleteConfirmation();"><i class="fa fa-trash mr-1"></i> Hapus</a>
+                            @endif
                             @csrf
                             <table id="penilaian" class="table table-striped table-hover table-responsive">
                                 <thead>
@@ -243,6 +246,25 @@
                 "buttons": ["excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#penilaian_wrapper .col-md-6:eq(0)');
         });
+
+        function deleteConfirmation() {
+            Swal.fire({
+                title: "Apa kamu yakin?",
+                text: "Sekali kamu hapus, data tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ route('penilaian.clear') }}";
+                } else {
+                    Swal.fire("Data aman", "", "info");
+                }
+            });
+        }
 
         $(document).ready(function () {
             @if(Session::has('msg'))
