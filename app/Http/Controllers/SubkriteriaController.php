@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subkriteria;
+use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -55,10 +56,31 @@ class SubkriteriaController extends Controller
     {
         try {
             $subkriteria = Subkriteria::findOrFail($id);
-            $subkriteria->delete();
+            $countPenilaian = Penilaian::where('subkriteria_id', $id)->count();
+            $countSubkriteria = Subkriteria::where('kriteria_id', $subkriteria->kriteria_id)->count();
+
+            if ($countPenilaian > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hapus penilaian terlebih dahulu!'
+                ]);
+            } elseif ($countSubkriteria <= 1) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Minimal harus ada satu sub kriteria!'
+                ]);
+            } else {
+                $subkriteria->delete();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Berhasil menghapus data'
+                ]);
+            }
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus data'
+            ]);
         }
     }
 }
