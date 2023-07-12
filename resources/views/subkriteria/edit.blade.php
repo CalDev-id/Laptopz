@@ -3,7 +3,7 @@
 @section('inner-content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-4 col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Edit Sub Kriteria</h3>
