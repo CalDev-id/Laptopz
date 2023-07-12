@@ -18,7 +18,7 @@
                             @csrf
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-secondary">Edit Preset</button>
+                                    <button type="button" class="btn btn-secondary">Pilih Preset</button>
                                 </div>
                                 <select name="preset" class="form-control rounded-right" id="preset" required>
                                     <option value="allrounder" {{ $lastPreset === 'allrounder' ? 'selected' : '' }}>All Rounder</option>
