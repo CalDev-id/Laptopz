@@ -95,13 +95,13 @@
             }).buttons().container().appendTo('#subkriteria_wrapper .col-md-6:eq(0)');
         });
 
-        $(document).ready(function () {
+        $(function () {
             function attachDeleteEventListener() {
                 $('.hapus').off('click').on('click', function (event) {
                     event.preventDefault();
-
+    
                     var deleteForm = $(this).closest('.delete-form');
-
+    
                     Swal.fire({
                         title: "Apa kamu yakin?",
                         text: "Sekali kamu hapus, data tidak dapat dikembalikan!",
@@ -120,17 +120,37 @@
                                     '_method': 'DELETE',
                                     '_token': "{{ csrf_token() }}"
                                 },
-                                success: function () {
+                                success: function (response) {
+                                    if (response.success) {
+                                        Swal.fire({
+                                            title: response.message,
+                                            icon: "success",
+                                            showCancelButton: false,
+                                            confirmButtonColor: "#3085d6",
+                                            confirmButtonText: "OK"
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location = "{{ route('kriteria.display', $kriteria->id) }}"
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: "Gagal menghapus data",
+                                            text: response.message,
+                                            icon: "error",
+                                            showCancelButton: false,
+                                            confirmButtonColor: "#3085d6",
+                                            confirmButtonText: "OK"
+                                        });
+                                    }
+                                },
+                                error: function () {
                                     Swal.fire({
-                                        title: "Berhasil mengapus data",
-                                        icon: "success",
+                                        title: "Gagal menghapus data",
+                                        icon: "error",
                                         showCancelButton: false,
                                         confirmButtonColor: "#3085d6",
                                         confirmButtonText: "OK"
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            window.location = "{{ route('kriteria.display', $kriteria->id) }}"
-                                        }
                                     });
                                 }
                             });
@@ -138,17 +158,17 @@
                             Swal.fire("Data aman", "", "info");
                         }
                     });
-
+    
                     return false;
                 });
             }
-
+    
             attachDeleteEventListener();
-
+    
             $('body').on('DOMSubtreeModified', '.dataTables_paginate', function () {
                 setTimeout(attachDeleteEventListener, 100);
             });
-
+    
             @if(Session::has('msg'))
                 Swal.fire({
                     title: "{{ Session::get('msg') }}",
@@ -161,6 +181,16 @@
             @if(Session::has('err'))
                 Swal.fire({
                     title: "{{ Session::get('err') }}",
+                    icon: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK"
+                });
+            @endif
+            @if(Session::has('errpenilaian'))
+                Swal.fire({
+                    title: "{{ Session::get('errpenilaian') }}",
+                    text: "Hapus penilaian terlebih dahulu",
                     icon: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#3085d6",
