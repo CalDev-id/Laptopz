@@ -44,4 +44,14 @@ class PenilaianController extends Controller
             return back()->with('err','Gagal menyimpan penilaian');
         }
     }
+
+    public function clear()
+    {
+        try {
+            DB::select("TRUNCATE penilaian");
+            return back()->with('msg','Berhasil menghapus penilaian');
+        } catch (Exception $e) {
+            return back()->with('err', 'Gagal menghapus penilaian');
+        }
+    }
 }
