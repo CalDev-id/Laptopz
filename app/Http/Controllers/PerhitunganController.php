@@ -87,6 +87,7 @@ class PerhitunganController extends Controller
 
         $ranking = array_reverse($ranking, true);
 
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('perhitungan.index', compact('alternatif','kriteria','normalisasi','ranking'), $data);
     }
 }

@@ -15,36 +15,82 @@ class KriteriaController extends Controller
     //     $this->middleware('auth');
     // }
 
+    public function applyPreset(Request $request)
+    {
+        $this->validate($request, [
+            'preset' => 'required|string',
+        ]);
+
+        try {
+            $preset = $request->preset;
+            session(['last_preset' => $preset]);
+
+            Kriteria::where('id', '1')->update(['bobot' => 0]);
+            Kriteria::where('id', '2')->update(['bobot' => 0]);
+            Kriteria::where('id', '3')->update(['bobot' => 0]);
+            Kriteria::where('id', '4')->update(['bobot' => 0]);
+            Kriteria::where('id', '5')->update(['bobot' => 0]);
+            Kriteria::where('id', '6')->update(['bobot' => 0]);
+            Kriteria::where('id', '7')->update(['bobot' => 0]);
+            Kriteria::where('id', '8')->update(['bobot' => 0]);
+            Kriteria::where('id', '9')->update(['bobot' => 0]);
+
+            if ($preset === 'allrounder') {
+                Kriteria::where('id', '1')->update(['bobot' => 13]);
+                Kriteria::where('id', '2')->update(['bobot' => 8]);
+                Kriteria::where('id', '3')->update(['bobot' => 15]);
+                Kriteria::where('id', '4')->update(['bobot' => 13]);
+                Kriteria::where('id', '5')->update(['bobot' => 13]);
+                Kriteria::where('id', '6')->update(['bobot' => 10]);
+                Kriteria::where('id', '7')->update(['bobot' => 8]);
+                Kriteria::where('id', '8')->update(['bobot' => 10]);
+                Kriteria::where('id', '9')->update(['bobot' => 10]);
+            } elseif ($preset === 'work/business') {
+                Kriteria::where('id', '1')->update(['bobot' => 10]);
+                Kriteria::where('id', '2')->update(['bobot' => 8]);
+                Kriteria::where('id', '3')->update(['bobot' => 10]);
+                Kriteria::where('id', '4')->update(['bobot' => 15]);
+                Kriteria::where('id', '5')->update(['bobot' => 13]);
+                Kriteria::where('id', '6')->update(['bobot' => 8]);
+                Kriteria::where('id', '7')->update(['bobot' => 13]);
+                Kriteria::where('id', '8')->update(['bobot' => 13]);
+                Kriteria::where('id', '9')->update(['bobot' => 10]);
+            } elseif ($preset === 'gamedevelopment') {
+                Kriteria::where('id', '9')->update(['bobot' => 13]);
+                Kriteria::where('id', '8')->update(['bobot' => 10]);
+                Kriteria::where('id', '7')->update(['bobot' => 20]);
+                Kriteria::where('id', '6')->update(['bobot' => 13]);
+                Kriteria::where('id', '5')->update(['bobot' => 13]);
+                Kriteria::where('id', '4')->update(['bobot' => 10]);
+                Kriteria::where('id', '3')->update(['bobot' => 5]);
+                Kriteria::where('id', '2')->update(['bobot' => 8]);
+                Kriteria::where('id', '1')->update(['bobot' => 8]);
+            } elseif ($preset === 'graphicdesign') {
+                Kriteria::where('id', '1')->update(['bobot' => 13]);
+                Kriteria::where('id', '2')->update(['bobot' => 8]);
+                Kriteria::where('id', '3')->update(['bobot' => 13]);
+                Kriteria::where('id', '4')->update(['bobot' => 10]);
+                Kriteria::where('id', '5')->update(['bobot' => 13]);
+                Kriteria::where('id', '6')->update(['bobot' => 15]);
+                Kriteria::where('id', '7')->update(['bobot' => 8]);
+                Kriteria::where('id', '8')->update(['bobot' => 10]);
+                Kriteria::where('id', '9')->update(['bobot' => 10]);
+            }
+
+            return back()->with('msg', 'Berhasil menerapkan preset');
+        } catch (Exception $e) {
+            return back()->with('err', 'Gagal menerapkan preset');
+        }
+    }
+
     public function index()
     {
         session(['dark-mode' => false]);
         $data['title'] = 'Kriteria';
         $data['kriteria'] = Kriteria::orderBy('id','ASC')->get();
+        $data['lastPreset'] = session('last_preset');
         $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('kriteria.index', $data);
-    }
-
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'kode' => 'required|string',
-            'nama_kriteria' => 'required|string',
-            'attribut'      => 'required|string',
-            'bobot'         => 'required|numeric'
-        ]);
-
-        try {
-            $kriteria = new Kriteria();
-            $kriteria->kode = $request->kode;
-            $kriteria->nama_kriteria = $request->nama_kriteria;
-            $kriteria->attribut = $request->attribut;
-            $kriteria->bobot = $request->bobot;
-            $kriteria->save();
-            return back()->with('msg','Berhasil menambahkan data');
-        } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
-        }
     }
 
     public function edit($id)
@@ -53,6 +99,7 @@ class KriteriaController extends Controller
         $data['title'] = 'Kriteria';
         $data['listkriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('kriteria.edit', $data);
     }
 
@@ -75,19 +122,7 @@ class KriteriaController extends Controller
             ]);
             return back()->with('msg','Berhasil merubah data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
-        }
-    }
-
-    public function destroy($id)
-    {
-        try {
-            $kriteria = Kriteria::findOrFail($id);
-            $kriteria->delete();
-        } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal merubah data');
         }
     }
 
@@ -97,6 +132,7 @@ class KriteriaController extends Controller
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::where('kriteria_id',$id)->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('kriteria.display', $data);
     }
 }

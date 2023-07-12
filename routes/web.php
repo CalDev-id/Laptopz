@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\SubkriteriaController;
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PerhitunganController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +20,12 @@ use App\Http\Controllers\PerhitunganController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    session(['dark-mode' => false]);
-    return view('dashboard.index', [
-        'title' => 'Dashboard',
-        'bodyClass' => 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
-    ]);
-});
+Route::resource('dashboard', DashboardController::class)->except(['show']);
 
 Route::resource('kriteria', KriteriaController::class)->except(['show']);
+Route::post('kriteria/applyPreset', [KriteriaController::class, 'applyPreset'])->name('kriteria.applyPreset');
 Route::get('kriteria/{id}', [KriteriaController::class, 'display'])->name('kriteria.display');
 
 Route::resource('subkriteria', SubkriteriaController::class)->except(['show']);
@@ -38,15 +33,9 @@ Route::resource('subkriteria', SubkriteriaController::class)->except(['show']);
 Route::resource('alternatif', AlternatifController::class)->except(['show']);
 
 Route::resource('penilaian', PenilaianController::class)->except(['show']);
+Route::get('penilaian/clear', [PenilaianController::class, 'clear'])->name('penilaian.clear');
 
 Route::get('/perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan.index');
-// Route::get('/kriteria', function() {
-//     session(['dark-mode' => false]);
-//     return view('kriteria.index', [
-//         'title' => 'Kriteria',
-//         'bodyClass' => 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed'
-//     ]);
-// });
 
 Route::get('/test', function () {
     session(['dark-mode' => true]);

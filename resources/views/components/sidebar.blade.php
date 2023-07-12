@@ -1,22 +1,22 @@
 <aside
 	class="main-sidebar elevation-4 {{ session('dark-mode', false) ? 'sidebar-light-primary' : 'sidebar-dark-primary' }}">
-	<a class="brand-link" href="index3.html">
-		<img alt="AdminLTE Logo" class="brand-image img-circle elevation-3" src="/dist/img/AdminLTELogo.png" style="opacity: .8">
-		<span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
+	<a class="brand-link" href="{{ route('dashboard.index') }}">
+		<img alt="Laptopz Logo" class="brand-image img-circle elevation-3" src="/dist/img/LaptopzLogo.png" style="opacity: .8">
+		<span class="brand-text font-weight-light">Laptopz</span>
 	</a>
 	<div class="sidebar">
 		<div class="user-panel d-flex mt-3 mb-3 pb-3">
 			<div class="image">
-				<img alt="User Image" class="img-circle elevation-2" src="/dist/img/user2-160x160.jpg">
+				<img alt="User Image" class="img-circle elevation-2" src="/dist/img/profile.png">
 			</div>
 			<div class="info">
-				<a class="d-block" href="#">Alexander Pierce</a>
+				<a class="d-block" href="#">Administrator</a>
 			</div>
 		</div>
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
 				<li class="nav-item">
-					<a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="dashboard">
+					<a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>Dashboard</p>
 					</a>

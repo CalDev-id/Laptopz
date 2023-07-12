@@ -55,8 +55,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('kriteria.index') }}" class="btn btn-success float-right">Kembali</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Simpan</button>
+                            <a href="{{ route('kriteria.index') }}" class="btn btn-success float-right"><i class="fas fa-arrow-left mr-1"></i> Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -91,15 +91,8 @@
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('kriteria.display',$row->id) }}" class="btn btn-info rounded mr-2"><i class="fa fa-eye"></i></a>
-                                                        <a href="{{ route('kriteria.edit',$row->id) }}" class="btn btn-warning rounded mr-2"><i class="fa fa-edit"></i></a>
-                                                        <form action="{{ route('kriteria.destroy', $row->id) }}" method="POST" class="delete-form">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger rounded hapus">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                        <a href="{{ route('kriteria.display',$row->id) }}" class="btn btn-info rounded mr-2"><i class="fa fa-eye mr-1"></i> Read</a>
+                                                        <a href="{{ route('kriteria.edit',$row->id) }}" class="btn btn-warning rounded mr-2"><i class="fa fa-edit mr-1"></i> Edit</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -123,63 +116,19 @@
         });
 
         $(document).ready(function () {
-            function attachDeleteEventListener() {
-                $('.hapus').off('click').on('click', function (event) {
-                    event.preventDefault();
-
-                    var deleteForm = $(this).closest('.delete-form');
-
-                    Swal.fire({
-                        title: "Apa kamu yakin?",
-                        text: "Sekali kamu hapus, data tidak dapat dikembalikan!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ya, hapus!",
-                        cancelButtonText: "Batal"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                url: deleteForm.attr('action'),
-                                type: 'POST',
-                                data: {
-                                    '_method': 'DELETE',
-                                    '_token': "{{ csrf_token() }}"
-                                },
-                                success: function () {
-                                    Swal.fire({
-                                        title: "Berhasil mengapus data",
-                                        icon: "success",
-                                        showCancelButton: false,
-                                        confirmButtonColor: "#3085d6",
-                                        confirmButtonText: "OK"
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            window.location = "{{ route('kriteria.index') }}"
-                                        }
-                                    });
-                                }
-                            });
-                        } else {
-                            Swal.fire("Data aman!", "", "info");
-                        }
-                    });
-
-                    return false;
-                });
-            }
-
-            attachDeleteEventListener();
-
-            $('body').on('DOMSubtreeModified', '.dataTables_paginate', function () {
-                setTimeout(attachDeleteEventListener, 100);
-            });
-
             @if(Session::has('msg'))
                 Swal.fire({
                     title: "{{ Session::get('msg') }}",
                     icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK"
+                });
+            @endif
+            @if(Session::has('err'))
+                Swal.fire({
+                    title: "{{ Session::get('err') }}",
+                    icon: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK"

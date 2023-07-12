@@ -3,7 +3,7 @@
 @section('inner-content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-4 col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Edit Sub Kriteria</h3>
@@ -34,8 +34,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('kriteria.display', $subkriteria->kriteria_id) }}" class="btn btn-success float-right">Kembali</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Simpan</button>
+                            <a href="{{ route('kriteria.display', $subkriteria->kriteria_id) }}" class="btn btn-success float-right"><i class="fas fa-arrow-left mr-1"></i> Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -107,7 +107,15 @@
                     confirmButtonText: "OK"
                 });
             @endif
-
+            @if(Session::has('err'))
+                Swal.fire({
+                    title: "{{ Session::get('err') }}",
+                    icon: "error",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK"
+                });
+            @endif
             // $('.hapus').on('click', function (event) {
             //     event.preventDefault();
 
@@ -146,7 +154,7 @@
             //                 }
             //             });
             //         } else {
-            //             Swal.fire("Data aman!", "", "info");
+            //             Swal.fire("Data aman", "", "info");
             //         }
             //     });
 

@@ -61,9 +61,7 @@
                                         <td>{{ $key }}</td>
                                         @foreach($value as $key_1 => $value_1)
                                             <td class="text-center">
-                                                @if($value[count($value)-1] != $key_1)
-                                                    {{ number_format($value_1,3) }}
-                                                @endif
+                                                {{ number_format($value_1,3) }}
                                             </td>
                                         @endforeach
                                     </tr>
@@ -137,6 +135,15 @@
         //         Swal.fire({
         //             title: "{{ Session::get('msg') }}",
         //             icon: "success",
+        //             showCancelButton: false,
+        //             confirmButtonColor: "#3085d6",
+        //             confirmButtonText: "OK"
+        //         });
+        //     @endif
+        //     @if(Session::has('err'))
+        //         Swal.fire({
+        //             title: "{{ Session::get('err') }}",
+        //             icon: "error",
         //             showCancelButton: false,
         //             confirmButtonColor: "#3085d6",
         //             confirmButtonText: "OK"

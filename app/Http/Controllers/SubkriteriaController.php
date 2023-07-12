@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subkriteria;
+use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -24,8 +25,7 @@ class SubkriteriaController extends Controller
             $subkriteria->save();
             return back()->with('msg','Berhasil menambahkan data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menambahkan data');
         }
     }
 
@@ -34,6 +34,7 @@ class SubkriteriaController extends Controller
         session(['dark-mode' => false]);
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::findOrFail($id);
+        $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
         return view('subkriteria.edit', $data);
     }
 
@@ -47,8 +48,7 @@ class SubkriteriaController extends Controller
             ]);
             return back()->with('msg','Berhasil merubah data');
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal merubah data');
         }
     }
 
@@ -56,10 +56,31 @@ class SubkriteriaController extends Controller
     {
         try {
             $subkriteria = Subkriteria::findOrFail($id);
-            $subkriteria->delete();
+            $countPenilaian = Penilaian::where('subkriteria_id', $id)->count();
+            $countSubkriteria = Subkriteria::where('kriteria_id', $subkriteria->kriteria_id)->count();
+
+            if ($countPenilaian > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hapus penilaian terlebih dahulu!'
+                ]);
+            } elseif ($countSubkriteria <= 1) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Minimal harus ada satu sub kriteria!'
+                ]);
+            } else {
+                $subkriteria->delete();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Berhasil menghapus data'
+                ]);
+            }
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus data'
+            ]);
         }
     }
 }
