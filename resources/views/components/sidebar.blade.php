@@ -1,7 +1,7 @@
 <aside
-	class="main-sidebar elevation-4 {{ session('dark-mode', false) ? 'sidebar-light-primary' : 'sidebar-dark-primary' }}">
+    class="main-sidebar elevation-4 {{ session('dark-mode') ? 'sidebar-dark-primary' : 'sidebar-light-primary' }}">
 	<a class="brand-link" href="{{ route('dashboard.index') }}">
-		<img alt="Laptopz Logo" class="brand-image img-circle elevation-3" src="/dist/img/LaptopzLogo.png" style="opacity: .8">
+		<img alt="Laptopz Logo" class="brand-image img-circle" src="/dist/img/laptopz.png" style="opacity: .8">
 		<span class="brand-text font-weight-light">Laptopz</span>
 	</a>
 	<div class="sidebar">
@@ -10,7 +10,7 @@
 				<img alt="User Image" class="img-circle elevation-2" src="/dist/img/profile.png">
 			</div>
 			<div class="info">
-				<a class="d-block" href="#">Administrator</a>
+				<a class="d-block" href="#">{{ Auth::user()->name }}</a>
 			</div>
 		</div>
 		<nav class="mt-2">
@@ -21,6 +21,14 @@
 						<p>Dashboard</p>
 					</a>
 				</li>
+                @if(Auth::user()->roles == 'Administrator')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ route('user.index') }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>User</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-header">KRITERIA</li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('kriteria') || Request::is('kriteria/*/edit') ? 'active' : '' }}" href="{{ route('kriteria.index') }}">
@@ -82,95 +90,6 @@
                         <p>Harga</p>
                     </a>
                 </li>
-				{{-- <li class="nav-item">
-					<a class="nav-link {{ Request::is('kriteria*') || Request::is('subkriteria*') ? 'active' : '' }}" href="{{ route('kriteria.index') }}">
-						<i class="nav-icon fas fa-list"></i>
-						<p>
-							Kriteria
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('kriteria.index') }}">
-								<i class="fas fa-globe nav-icon"></i>
-								<p>Semua</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('kriteria.display', 1) }}">
-								<i class="fas fa-memory nav-icon"></i>
-								<p>RAM</p>
-							</a>
-						</li>
-					</ul>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-microchip nav-icon"></i>
-								<p>Processor</p>
-							</a>
-						</li>
-					</ul>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-database nav-icon"></i>
-								<p>Kapasitas Penyimpanan</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-hdd nav-icon"></i>
-								<p>Jenis Penyimpanan</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-tv nav-icon"></i>
-								<p>Kualitas Layar</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-dumbbell nav-icon"></i>
-								<p>Berat</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-battery-full nav-icon"></i>
-								<p>Baterai</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-vr-cardboard nav-icon"></i>
-								<p>Kartu Grafis</p>
-							</a>
-						</li>
-					</ul>
-                    <ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="fas fa-money-bill nav-icon"></i>
-								<p>Harga</p>
-							</a>
-						</li>
-					</ul>
-				</li> --}}
                 <li class="nav-header">ALTERNATIF</li>
 				<li class="nav-item">
 					<a class="nav-link {{ Request::is('alternatif*') ? 'active' : '' }}" href="{{ route('alternatif.index') }}">
@@ -190,13 +109,6 @@
 						<p>Perhitungan</p>
 					</a>
 				</li>
-				{{-- <li class="nav-header">LABEL</li>
-				<li class="nav-item">
-					<a class="nav-link {{ Request::is('test') ? 'active' : '' }}" href="test">
-						<i class="fas fa-circle nav-icon"></i>
-						<p>Test</p>
-					</a>
-				</li> --}}
 			</ul>
 		</nav>
 	</div>
