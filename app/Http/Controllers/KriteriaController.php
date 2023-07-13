@@ -10,10 +10,10 @@ use Exception;
 
 class KriteriaController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function applyPreset(Request $request)
     {
@@ -85,7 +85,6 @@ class KriteriaController extends Controller
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Kriteria';
         $data['kriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['lastPreset'] = session('last_preset');
@@ -95,7 +94,6 @@ class KriteriaController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Kriteria';
         $data['listkriteria'] = Kriteria::orderBy('id','ASC')->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
@@ -106,7 +104,7 @@ class KriteriaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kode' => 'required|string',
+            'kode'          => 'required|string',
             'nama_kriteria' => 'required|string',
             'attribut'      => 'required|string',
             'bobot'         => 'required|numeric'
@@ -115,7 +113,7 @@ class KriteriaController extends Controller
         try {
             $kriteria = Kriteria::findOrFail($id);
             $kriteria->update([
-                'kode' => $request->kode,
+                'kode'          => $request->kode,
                 'nama_kriteria' => $request->nama_kriteria,
                 'attribut'      => $request->attribut,
                 'bobot'         => $request->bobot
@@ -128,7 +126,6 @@ class KriteriaController extends Controller
 
     public function display($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Sub Kriteria';
         $data['subkriteria'] = Subkriteria::where('kriteria_id',$id)->get();
         $data['kriteria'] = Kriteria::findOrFail($id);
