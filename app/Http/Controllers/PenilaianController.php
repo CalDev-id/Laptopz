@@ -12,9 +12,13 @@ use Exception;
 
 class PenilaianController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Penilaian';
         $alternatif = Alternatif::with('penilaian.subkriteria')->get();
         $kriteria = Kriteria::with('subkriteria')->orderBy('id','ASC')->get();
@@ -28,7 +32,7 @@ class PenilaianController extends Controller
     {
         try {
             DB::select("TRUNCATE penilaian");
-            foreach ($request->subkriteria_id as $key => $value) 
+            foreach ($request->subkriteria_id as $key => $value)
             {
                 foreach($value as $key_1 => $value_1)
                 {
