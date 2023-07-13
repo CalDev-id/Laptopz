@@ -9,14 +9,13 @@ use Exception;
 
 class AlternatifController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['alternatif'] = Alternatif::orderBy('id','ASC')->get();
         $data['bodyClass'] = 'hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed';
@@ -41,7 +40,6 @@ class AlternatifController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['listalternatif'] = Alternatif::orderBy('id','ASC')->get();
         $data['alternatif'] = Alternatif::findOrFail($id);
@@ -72,8 +70,7 @@ class AlternatifController extends Controller
             $alternatif = Alternatif::findOrFail($id);
             $alternatif->delete();
         } catch (Exception $e) {
-            Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
-            die("Gagal");
+            return back()->with('err','Gagal menghapus data');
         }
     }
 }
