@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<title>{{ env('APP_NAME') . (isset($title) ? " | {$title}" : '') }}</title>
+	<link rel="icon" type="image/x-icon" href="/dist/img/laptopz.png">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" rel="stylesheet">
 	<link href="/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<link href="/dist/css/adminlte.min.css" rel="stylesheet">
