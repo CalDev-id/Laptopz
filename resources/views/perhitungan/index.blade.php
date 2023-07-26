@@ -80,18 +80,12 @@
                         <table id="perankingan" class="table table-bordered table-hover" class="table-responsive">
                             <thead>
                                 <tr class="bg-gradient bg-dark text-light">
-                                    <th rowspan="2" style="vertical-align: middle;">Alternatif / Kriteria</th>
+                                    <th style="vertical-align: middle;">Alternatif / Kriteria</th>
                                     @foreach($kriteria as $key => $value)
-                                        <th class="text-center">{{ $value->kode }}</th>
+                                        <th class="text-center">{{ $value->kode }} ({{ $value->bobot }}%)</th>
                                     @endforeach
-                                    <th rowspan="2" style="vertical-align: middle;" class="text-center">Total</th>
-                                    <th rowspan="2" style="vertical-align: middle;" class="text-center">Rank</th>
-                                </tr>
-                                <tr class="bg-gradient bg-dark text-light">
-                                    {{-- <th rowspan="2">Bobot</th> --}}
-                                    @foreach($kriteria as $key => $value)
-                                        <th class="text-center">{{ $value->bobot }}%</th>
-                                    @endforeach
+                                    <th style="vertical-align: middle;" class="text-center">Total</th>
+                                    <th style="vertical-align: middle;" class="text-center">Rank</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +94,7 @@
                                     <tr>
                                         <td>{{ $key }}</td>
                                         @foreach($value as $key_1 => $value_1)
-                                            <td class="text-center">{{ number_format($value_1,3) }}</td>
+                                            <td class="text-center">{{ number_format($value_1,4) }}</td>
                                         @endforeach
                                         <td class="text-center">{{ $no++ }}</td>
                                     </tr>
