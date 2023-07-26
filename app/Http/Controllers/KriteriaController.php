@@ -56,15 +56,15 @@ class KriteriaController extends Controller
                 Kriteria::where('id', '8')->update(['bobot' => 13]);
                 Kriteria::where('id', '9')->update(['bobot' => 10]);
             } elseif ($preset === 'gamedevelopment') {
-                Kriteria::where('id', '9')->update(['bobot' => 13]);
-                Kriteria::where('id', '8')->update(['bobot' => 10]);
-                Kriteria::where('id', '7')->update(['bobot' => 20]);
-                Kriteria::where('id', '6')->update(['bobot' => 13]);
+                Kriteria::where('id', '1')->update(['bobot' => 13]);
+                Kriteria::where('id', '2')->update(['bobot' => 10]);
+                Kriteria::where('id', '3')->update(['bobot' => 20]);
+                Kriteria::where('id', '4')->update(['bobot' => 13]);
                 Kriteria::where('id', '5')->update(['bobot' => 13]);
-                Kriteria::where('id', '4')->update(['bobot' => 10]);
-                Kriteria::where('id', '3')->update(['bobot' => 5]);
-                Kriteria::where('id', '2')->update(['bobot' => 8]);
-                Kriteria::where('id', '1')->update(['bobot' => 8]);
+                Kriteria::where('id', '6')->update(['bobot' => 10]);
+                Kriteria::where('id', '7')->update(['bobot' => 5]);
+                Kriteria::where('id', '8')->update(['bobot' => 8]);
+                Kriteria::where('id', '9')->update(['bobot' => 8]);
             } elseif ($preset === 'graphicdesign') {
                 Kriteria::where('id', '1')->update(['bobot' => 13]);
                 Kriteria::where('id', '2')->update(['bobot' => 8]);
