@@ -22,7 +22,6 @@ class UserController extends Controller
 
     public function index()
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'User';
         $data['user'] = User::orderBy('id','ASC')->get();
         $data['adminCount'] = User::where('roles', 'Administrator')->count();
@@ -32,7 +31,6 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        session(['dark-mode' => false]);
         $data['title'] = 'Alternatif';
         $data['listuser'] = User::orderBy('id','ASC')->get();
         $data['user'] = User::findOrFail($id);
