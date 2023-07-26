@@ -72,8 +72,8 @@ class PerhitunganController extends Controller
             }
         }
 
-        $ranking = $normalisasi;
-        foreach ($normalisasi as $key => $value)
+        $ranking = $rank;
+        foreach ($rank as $key => $value)
         {
             $ranking[$key][] = array_sum($rank[$key]);
         }
