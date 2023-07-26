@@ -1,4 +1,3 @@
-![Image](https://raw.githubusercontent.com/zuramai/laravel-mazer/main/screenshot.png)
 <h1 align="center">Mazer + Laravel Jetstream</h1>
 <p align="center">Mazer is a Admin Dashboard Template that can help you develop faster. We bring Mazer with Laravel starter project. It's completely free and you can use it in your projects.</p>
 
@@ -44,8 +43,8 @@ If you want to check the original template in HTML5 and Bootstrap, [click here](
 
 7. Login credentials
 
-**Email:** user@gmail.com
+**Email:** admin@gmail.com
 
-**Password:** password
+**Password:** admin123
 ## Contributing
 Feel free to contribute and make a pull request.
